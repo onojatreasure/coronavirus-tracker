@@ -3,55 +3,105 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Coronavirus (Covid-19) Tracker</title>
+    <title>Coronavirus disease (COVID-19) Tracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 </head>
 
 <body>
 <div class="container">
-    <h1>Covid19 Tracker Application</h1>
-    <p>This application reports the number of confirmed cases reported across the globe</p>
 
+    <div class=""card text-center>
 
-    <div class="jumbotron">
-        <h1 class="display-4" th:text="${totalReportedCases}">Total cases reported as of today</h1>
-        <p class="lead">Total cases reported as of today</p>
-        <hr class="my-4">
-        <p>
-            <span>New cases reported since previous day: </span>
-            <span th:text="${totalNewCases}"></span>
-        </p>
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active text-right" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-right"  href="#">Safety Tips</a>
+                </li>
+            </ul>
+        </div>
 
-        <hr class="my-4">
-        <p>DISCLAIMER:</p>
-        <p>Data is provided by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)</p>
-        <p>Visual Dashboard (desktop):</p>
-        <p>https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6</p>
+        <div class="card-body">
+            <h1 class="card-title">Coronavirus Disease (Covid-19) Pandemic Tracker</h1>
+            <h5 class="card-title">Get to know the number of cases in your region and all over the globe.</h5>
+            <h3>
+                <span class="badge badge-danger font-weight-bold" th:text="${totalReportedCases}">Total cases reported as of today</span>
+            </h3>
+
+            <p class="lead">Total cases reported as of today</p>
+
+            <hr class="my-4">
+
+            <span>New cases reported since yesterday: </span>
+            <h4>
+                <span class="badge badge-primary font-weight-bold" th:text="${totalNewCases}"></span>
+            </h4>
+        </div>
 
     </div>
 
 
-    <table class="table">
-        <tr>
-            <th>Country</th>
-            <th>State</th>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+            <tr class="sticky-top">
+                <th>Country</th>
+                <th>State</th>
+                <th>Total Cases</th>
+                <th>Changes since last day</th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr th:each="locationStat : ${locationStats}">
+                <td th:text="${locationStat.country}"></td>
+                <td th:text="${locationStat.state}"></td>
 
-            <th>Total Cases Reported</th>
-            <th>Changes since last day</th>
-        </tr>
-        <tr th:each="locationStat : ${locationStats}">
-            <td th:text="${locationStat.country}"></td>
-            <td th:text="${locationStat.state}"></td>
-
-            <td th:text="${locationStat.latestTotalCases}">0</td>
-            <td th:text="${locationStat.diffFromPrevDay}">0</td>
-        </tr>
+                <td th:text="${locationStat.latestTotalCases}">0</td>
+                <td th:text="${locationStat.diffFromPrevDay}">0</td>
+            </tr>
+        </tbody>
     </table>
 
 </div>
+
+<!-- Footer -->
+<footer class="page-footer font-small cyan darken-3">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+        <!-- Grid row-->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-5">
+                <div class="mb-5 flex-center">
+
+
+
+                </div>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 </body>
 
