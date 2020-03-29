@@ -9,6 +9,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </head>
 
 <body>
@@ -46,8 +47,8 @@
 
     </div>
 
-
-    <table class="table table-hover">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for country">
+    <table class="table table-hover" id="myTable">
         <thead class="thead-dark">
             <tr class="sticky-top">
                 <th>Country</th>
